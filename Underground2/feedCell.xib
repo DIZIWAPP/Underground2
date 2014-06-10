@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="feedCell" id="CvD-KH-ciM" customClass="UGFeedCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SQY-SU-SX3">
+                        <rect key="frame" x="6" y="8" width="44" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="8Qp-a1-xt2"/>
+                            <constraint firstAttribute="height" constant="44" id="Yop-Am-Xjf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HrN-JY-3mY">
+                        <rect key="frame" x="58" y="19" width="211" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="211" id="IxM-kI-frF"/>
+                            <constraint firstAttribute="height" constant="21" id="uRM-q1-MNH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGO-S2-wwh">
+                        <rect key="frame" x="270" y="5" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="U0Y-3u-hnd"/>
+                            <constraint firstAttribute="width" constant="50" id="ecv-KA-qOX"/>
+                        </constraints>
+                        <state key="normal" image="follow.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qo-0P-hqt">
+                        <rect key="frame" x="0.0" y="58" width="320" height="2"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.10803345959595956" green="0.10803345959595956" blue="0.10803345959595956" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="SQY-SU-SX3" secondAttribute="centerY" id="0yf-Hc-7LT"/>
+                <constraint firstAttribute="centerY" secondItem="ZGO-S2-wwh" secondAttribute="centerY" id="3Rs-Eq-42f"/>
+                <constraint firstAttribute="trailing" secondItem="ZGO-S2-wwh" secondAttribute="trailing" id="7pY-rf-897"/>
+                <constraint firstItem="HrN-JY-3mY" firstAttribute="leading" secondItem="SQY-SU-SX3" secondAttribute="trailing" constant="8" id="CSF-7V-o3W"/>
+                <constraint firstItem="SQY-SU-SX3" firstAttribute="leading" secondItem="CvD-KH-ciM" secondAttribute="leading" constant="6" id="hZA-2E-kPc"/>
+                <constraint firstAttribute="centerY" secondItem="HrN-JY-3mY" secondAttribute="centerY" id="nH0-Qi-aVq"/>
+            </constraints>
+            <size key="customSize" width="320" height="60"/>
+            <connections>
+                <outlet property="buttonSub" destination="ZGO-S2-wwh" id="5ST-ee-aTr"/>
+                <outlet property="imageViewIcon" destination="SQY-SU-SX3" id="lxB-bn-VqO"/>
+                <outlet property="labelName" destination="HrN-JY-3mY" id="zs4-8u-Znq"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="follow.png" width="80" height="80"/>
+    </resources>
+</document>
