@@ -43,37 +43,58 @@
 
 -(void)refreshCompletion:(void (^)(void))block
 {
-    if (!self.feed)
-        self.feed = [NSMutableArray array];
-    [self.feed removeAllObjects];
-    
-    [self.feed removeAllObjects];
-    [self findFeedCompletion:block];
-}
-
--(void)findFeedCompletion:(void(^)(void))block
-{
     if (![PFUser currentUser]){
         if (block) block();
         return;
     }
     
+    if (!self.feed)
+        self.feed = [NSMutableArray array];
+    [self.feed removeAllObjects];
+    
     [self findFollowedTags:^{
-        [self findFollowedUsersVideos:^{
-            //sort and display
-            
-            self.feed = [[self.feed sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
-                UGVideo *vid1 = obj1;
-                UGVideo *vid2 = obj2;
+        [self findUsersVideos:^{
+            [self findFollowedUsersVideos:^{
+                //sort and display
                 
-                return [vid2.object.createdAt compare:vid1.object.createdAt];
+                self.feed = [[self.feed sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    UGVideo *vid1 = obj1;
+                    UGVideo *vid2 = obj2;
+                    
+                    return [vid2.object.createdAt compare:vid1.object.createdAt];
+                    
+                }] mutableCopy];
                 
-            }] mutableCopy];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (block) block();
-            });
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (block) block();
+                });
+            }];
         }];
+    }];
+}
+
+-(void)findUsersVideos:(void(^)(void))block
+{
+    PFRelation *videos = [[PFUser currentUser] relationforKey:@"files"];
+    
+    PFQuery *query = [videos query];
+    [query addDescendingOrder:@"createdAt"];
+    [query includeKey:@"user"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error){
+                if (block) block();
+                return;
+            }
+            
+            for (PFObject *file in objects){
+                UGVideo *video = [[UGVideo alloc] initWithObject:file];
+                [self.feed addObject:video];
+            }
+            
+            if (block) block();
+        });
     }];
 }
 

@@ -89,6 +89,7 @@
 		8671AECF1947828A00471646 /* UGPollsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671AECE1947828A00471646 /* UGPollsViewController.m */; };
 		8671AED21947833D00471646 /* pollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8671AED11947833D00471646 /* pollCell.xib */; };
 		8671AED51947843F00471646 /* UGPollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671AED41947843F00471646 /* UGPollCell.m */; };
+		8671AED71947975900471646 /* vote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8671AED61947975900471646 /* vote@2x.png */; };
 		867410C8173B4D8C00BA7A96 /* UGTermsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 867410C7173B4D8C00BA7A96 /* UGTermsManager.m */; };
 		867410D0173B51D700BA7A96 /* NSString+StringBetween.m in Sources */ = {isa = PBXBuildFile; fileRef = 867410CF173B51D700BA7A96 /* NSString+StringBetween.m */; };
 		867410D3173B6CEA00BA7A96 /* UGUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867410D2173B6CEA00BA7A96 /* UGUploadViewController.m */; };
@@ -314,6 +315,7 @@
 		8671AED11947833D00471646 /* pollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pollCell.xib; sourceTree = "<group>"; };
 		8671AED31947843F00471646 /* UGPollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPollCell.h; sourceTree = "<group>"; };
 		8671AED41947843F00471646 /* UGPollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPollCell.m; sourceTree = "<group>"; };
+		8671AED61947975900471646 /* vote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote@2x.png"; sourceTree = "<group>"; };
 		867410C6173B4D8C00BA7A96 /* UGTermsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGTermsManager.h; sourceTree = "<group>"; };
 		867410C7173B4D8C00BA7A96 /* UGTermsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGTermsManager.m; sourceTree = "<group>"; };
 		867410C9173B4E2F00BA7A96 /* UGMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMacros.h; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 		8649AD03173B3BDD00D0D8AD /* media */ = {
 			isa = PBXGroup;
 			children = (
+				8671AED61947975900471646 /* vote@2x.png */,
 				8671AECB19477AA900471646 /* underground.png */,
 				86CF3C111922BEF4005D47F5 /* teamsIcon@2x.png */,
 				86CF3C0F1922A257005D47F5 /* search@2x.png */,
@@ -1103,6 +1106,7 @@
 				86B85A7117C55E610069FD99 /* flip@2x.png in Resources */,
 				86BCA0A818B6F7AF0033B4FC /* play.png in Resources */,
 				86B85A7317C55FC80069FD99 /* stop@2x.png in Resources */,
+				8671AED71947975900471646 /* vote@2x.png in Resources */,
 				8671AED21947833D00471646 /* pollCell.xib in Resources */,
 				8620889117CC1D12003FFB05 /* sliderThumb@2x.png in Resources */,
 				867FFC7D18A45EDE00D6DFE4 /* tagCell.xib in Resources */,
@@ -1330,7 +1334,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
 				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1360,7 +1364,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
 				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

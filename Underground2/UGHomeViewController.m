@@ -30,6 +30,7 @@
 
 #import "UGTabBarController.h"
 
+#import "UGFilterViewController.h"
 #import "UGPollsViewController.h"
 
 #define DOCUMENTS [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]
@@ -60,7 +61,7 @@
     videoFeedView = [[UGVideoFeedView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 46, 320, self.view.frame.size.height/2 - 46)];
     [self.view addSubview:videoFeedView];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"teamsIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"  TV " style:UIBarButtonItemStylePlain target:self action:@selector(viewTV)];
     
     videoFeedView.delegate = self;
@@ -101,6 +102,17 @@
 -(void)showMenu
 {
     [UGPollsViewController showPolls];
+}
+
+-(void)showSearch
+{
+    UGFilterViewController *filter = [UGFilterViewController findItemsWithQueryBlock:^PFQuery *{
+        PFQuery *query = [PFQuery queryWithClassName:@"File"];
+        [query orderByDescending:@"createdAt"];
+        [query includeKey:@"user"];
+        return query;
+    } searchText:@""];
+    filter.title = @"Search";
 }
 
 -(void)viewTV

@@ -415,7 +415,7 @@
 -(void)logOutUser
 {
     [PFUser logOut];
-    [[UGTabBarController tabBarController] setSelectedIndex:0];
+    [[UGTabBarController tabBarController] showLoginSignUp];
 }
 
 @end

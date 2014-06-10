@@ -35,6 +35,7 @@
 {
     if (self = [super init]) {
         //init
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"vote"] selectedImage:[UIImage imageNamed:@"vote"]];
         
         self.title = @"Votes";
         
@@ -42,7 +43,7 @@
         
         layout.itemSize = CGSizeMake(320, 267);
         
-        pollsCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 46*2) collectionViewLayout:layout];
+        pollsCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 46) collectionViewLayout:layout];
         [self.view addSubview:pollsCollection];
         
         pollsCollection.dataSource = self;

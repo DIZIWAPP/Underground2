@@ -21,6 +21,8 @@
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "UGPollsViewController.h"
+
 @interface UGTabBarController () <UITabBarControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UIAlertViewDelegate>
 {
     UIAlertView *usernameAlert;
@@ -42,6 +44,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UINavigationController *nav = [UINavigationController new];
+    [nav addChildViewController:[UGPollsViewController new]];
+    
+    NSMutableArray *vcs = [self.viewControllers mutableCopy];
+    [vcs insertObject:nav atIndex:0];
+    
+    [self setViewControllers:vcs];
+    
     
     self.orientationMask = UIInterfaceOrientationMaskPortrait;
     self.tabBar.tintColor = [UIColor redColor];
