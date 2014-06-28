@@ -29,6 +29,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PFObject;
+
 @interface MWFeedItem : NSObject <NSCoding> {
 	
 	NSString *identifier; // Item identifier
@@ -60,5 +62,11 @@
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSArray *enclosures;
 @property (nonatomic, copy) NSString *imageURL;
+@property (nonatomic, copy) NSString *video;
+
+@property (nonatomic, strong) PFObject *petitionObject;
+
+-(void)getObjectCompletion:(void(^)(PFObject *object))block;
+-(CGSize)cellSize;
 
 @end

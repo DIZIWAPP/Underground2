@@ -25,6 +25,8 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "UGRSSManager.h"
+
 @implementation UGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

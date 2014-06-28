@@ -216,7 +216,7 @@ static inline NSComparisonResult NSCalendarUnitCompareSignificance(NSCalendarUni
             case NSYearCalendarUnit:
                 return singular ? NSLocalizedStringWithDefaultValue(@"Year Unit (Singular, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"y", nil) : NSLocalizedStringWithDefaultValue(@"Year Unit (Plural, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"y", nil);
             case NSMonthCalendarUnit:
-                return singular ? NSLocalizedStringWithDefaultValue(@"Month Unit (Singular, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"m", nil) : NSLocalizedStringWithDefaultValue(@"Month Unit (Plural, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"m", nil);
+                return singular ? NSLocalizedStringWithDefaultValue(@"Month Unit (Singular, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"month", nil) : NSLocalizedStringWithDefaultValue(@"Month Unit (Plural, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"months", nil);
             case NSWeekCalendarUnit:
                 return singular ? NSLocalizedStringWithDefaultValue(@"Week Unit (Singular, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"w", nil) : NSLocalizedStringWithDefaultValue(@"Week Unit (Plural, Abbreviated)", @"FormatterKit", [NSBundle mainBundle], @"w", nil);
             case NSDayCalendarUnit:

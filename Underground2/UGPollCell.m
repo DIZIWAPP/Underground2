@@ -19,27 +19,53 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "MWFeedItem.h"
+
+#import "TTTTimeIntervalFormatter.h"
+
+#import "UGLiveViewController.h"
+
 @implementation UGPollCell
 {
     __weak IBOutlet UILabel *name;
-    __weak IBOutlet UITextView *detail;
+    __weak IBOutlet UIWebView *webViewSummary;
     __weak IBOutlet UIButton *buttonAgree;
     __weak IBOutlet UIButton *buttonDiscuss;
     __weak IBOutlet UIButton *buttonDisagree;
     __weak IBOutlet UILabel *labelTime;
 }
 
--(void)setObject:(PFObject *)object
+-(void)setItem:(MWFeedItem *)item
 {
-    _object = object;
+    _item = item;
     
-    name.text = object[@"name"];
-    detail.text = object[@"details"];
+    name.text = item.title;
+    //detail.text = item.summary;
+    labelTime.text = [[TTTTimeIntervalFormatter shared] stringForTimeIntervalFromDate:[NSDate date] toDate:item.date];
     
-    labelTime.text = [[TTTTimeIntervalFormatter shared] stringForTimeIntervalFromDate:[NSDate date] toDate:self.object.createdAt];
+    if (name.gestureRecognizers.count == 0){
+        [name addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewArticle)]];
+        [name setUserInteractionEnabled:YES];
+    }
     
-    [self updateUI];
+    NSString *content = @"";
     
+    if (item.video)
+        content = [NSString stringWithFormat:@"<iframe width='300' height='160' src='%@' frameborder='0' allowfullscreen></iframe>", item.video];
+    if (item.summary)
+        content = [NSString stringWithFormat:@"%@%@", content, item.summary];
+    
+    [webViewSummary loadHTMLString:content baseURL:[NSURL URLWithString:@"http://wwww.underground.net"]];
+    
+    [UIView performWithoutAnimation:^{
+        [buttonAgree setEnabled:NO];
+        [buttonDisagree setEnabled:NO];
+        [buttonDiscuss setEnabled:NO];
+    }];
+    
+    [item getObjectCompletion:^(PFObject *object) {
+        [self updateUI];
+    }];
     
     buttonAgree.clipsToBounds = YES;
     buttonDisagree.clipsToBounds = YES;
@@ -51,6 +77,7 @@
 - (IBAction)agree:(id)sender {
     [self vote:YES];
 }
+
 - (IBAction)disagree:(id)sender {
     [self vote:NO];
 }
@@ -61,8 +88,9 @@
     
     __weak UGPollCell *weakSelf = self;
     
-    PFRelation *yesRelation = [self.object relationforKey:@"votesYes"];
-    PFRelation *noRelation = [self.object relationforKey:@"votesNo"];
+    
+    PFRelation *yesRelation = [self.item.petitionObject relationforKey:@"votesYes"];
+    PFRelation *noRelation = [self.item.petitionObject relationforKey:@"votesNo"];
     
     if (agree)
     {
@@ -73,7 +101,7 @@
         [yesRelation removeObject:[PFUser currentUser]];
     }
     
-    [self.object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [self.item.petitionObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [weakSelf enableUI:YES];
         [weakSelf updateUI];
     }];
@@ -81,30 +109,37 @@
 
 -(void)updateUI
 {
-    PFRelation *votesYes = [self.object relationforKey:@"votesYes"];
+    PFRelation *votesYes = [self.item.petitionObject relationforKey:@"votesYes"];
     [[votesYes query] countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         [buttonAgree setTitle:[NSString stringWithFormat:@"Yes: %i", number] forState:UIControlStateNormal];
     }];
-    PFRelation *votesNo = [self.object relationforKey:@"votesNo"];
+    PFRelation *votesNo = [self.item.petitionObject relationforKey:@"votesNo"];
     [[votesNo query] countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         [buttonDisagree setTitle:[NSString stringWithFormat:@"No: %i", number] forState:UIControlStateNormal];
     }];
+    
+    [UIView performWithoutAnimation:^{
+        [buttonAgree setEnabled:YES];
+        [buttonDisagree setEnabled:YES];
+        [buttonDiscuss setEnabled:YES];
+    }];
+    
 }
 
 - (IBAction)discuss:(id)sender {
     __weak UGPollCell *weakSelf = self;
 
     [UGRecordViewController recordVideoCompletion:^(UGVideo *video) {
-        PFRelation *discussions = [self.object relationforKey:@"discussions"];
+        PFRelation *discussions = [weakSelf.item.petitionObject relationforKey:@"discussions"];
         [discussions addObject:video.object];
-        [weakSelf.object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [weakSelf.item.petitionObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
         }];
     }];
 }
 - (IBAction)viewDiscussion:(id)sender {
     UGFilterViewController *filtered = [UGFilterViewController findItemsWithQueryBlock:^PFQuery *{
-        PFRelation *discussions = [self.object relationforKey:@"discussions"];
+        PFRelation *discussions = [self.item.petitionObject relationforKey:@"discussions"];
         
         PFQuery *videos = [discussions query];
         [videos includeKey:@"user"];
@@ -113,6 +148,14 @@
         return videos;
     } searchText:@""];
     filtered.title = @"Discussions";
+}
+
+-(void)viewArticle
+{
+    UGLiveViewController *liveVC = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"liveVC"];
+    liveVC.url = [NSURL URLWithString:self.item.link];
+    liveVC.title = self.item.title;
+    [[UGTabBarController tabBarController] pushViewController:liveVC];
 }
 
 -(void)enableUI:(BOOL)enable

@@ -29,6 +29,8 @@
 
 #import "MWFeedItem.h"
 
+#import <Parse/Parse.h>
+
 #define EXCERPT(str, len) (([str length] > len) ? [[str substringToIndex:len-1] stringByAppendingString:@"…"] : str)
 
 @implementation MWFeedItem
@@ -73,6 +75,64 @@
 	if (content) [encoder encodeObject:content forKey:@"content"];
 	if (author) [encoder encodeObject:author forKey:@"author"];
 	if (enclosures) [encoder encodeObject:enclosures forKey:@"enclosures"];
+}
+
+-(void)getObjectCompletion:(void(^)(PFObject *object))block
+{
+    if (self.petitionObject) {
+        if (block) block(self.petitionObject);
+        return;
+    }
+    
+    PFQuery *pollQ = [PFQuery queryWithClassName:@"Petition"];
+    
+    [pollQ whereKey:@"URL" equalTo:self.link];
+    
+    __weak MWFeedItem *weakSelf = self;
+    
+    [pollQ findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (error) {
+            if (block) block(nil);
+            return;
+        }
+        
+        if (objects.count < 1)
+        {
+            //create it
+            PFObject *petition = [PFObject objectWithClassName:@"Petition"];
+            [petition setObject:self.link forKey:@"URL"];
+            [petition saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error) {
+                        if (block) block(nil);
+                        return;
+                    }
+                    
+                    weakSelf.petitionObject = petition;
+                    
+                    if (block) block(weakSelf.petitionObject);
+                });
+            }];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.petitionObject = objects[0];
+                if (block) block(weakSelf.petitionObject);
+            });
+        }
+    }];
+}
+
+-(CGSize)cellSize
+{
+    CGSize returnSize = CGSizeMake(320, 160);
+    
+    if (self.video)
+        returnSize = CGSizeMake(returnSize.width, returnSize.height + 170);
+    if (self.summary)
+        returnSize = CGSizeMake(returnSize.width, returnSize.height + 170);
+    
+    return returnSize;
 }
 
 @end

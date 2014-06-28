@@ -46,6 +46,7 @@
 	// Do any additional setup after loading the view.
     
     UINavigationController *nav = [UINavigationController new];
+    nav.navigationBar.translucent = NO;
     [nav addChildViewController:[UGPollsViewController new]];
     
     NSMutableArray *vcs = [self.viewControllers mutableCopy];

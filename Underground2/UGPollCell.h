@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class MWFeedItem;
+
 @interface UGPollCell : UICollectionViewCell
 
-@property (nonatomic, weak) PFObject *object;
+@property (nonatomic, weak) MWFeedItem *item;
 
 @end
