@@ -157,6 +157,9 @@
 		86BE1787174D9E9400105367 /* UGLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BE1786174D9E9400105367 /* UGLogInViewController.m */; };
 		86BE178A174DA23000105367 /* UGSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BE1789174DA23000105367 /* UGSignUpViewController.m */; };
 		86C0304217CC05E600973C05 /* UGVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C0304117CC05E600973C05 /* UGVideoViewController.m */; };
+		86C12B1919632CAF001FB463 /* pollResults.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C12B1819632CAF001FB463 /* pollResults.xib */; };
+		86C12B1B19632DA1001FB463 /* reportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C12B1A19632DA1001FB463 /* reportView.xib */; };
+		86C12B1E19633132001FB463 /* UGPollResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C12B1D19633132001FB463 /* UGPollResultsView.m */; };
 		86C1CDF6175031C8000CDD91 /* logoSlim@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C1CDF5175031C8000CDD91 /* logoSlim@2x.png */; };
 		86CF3C101922A257005D47F5 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86CF3C0F1922A257005D47F5 /* search@2x.png */; };
 		86CF3C121922BEF4005D47F5 /* teamsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86CF3C111922BEF4005D47F5 /* teamsIcon@2x.png */; };
@@ -419,6 +422,10 @@
 		86BE1789174DA23000105367 /* UGSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGSignUpViewController.m; sourceTree = "<group>"; };
 		86C0304017CC05E600973C05 /* UGVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGVideoViewController.h; sourceTree = "<group>"; };
 		86C0304117CC05E600973C05 /* UGVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGVideoViewController.m; sourceTree = "<group>"; };
+		86C12B1819632CAF001FB463 /* pollResults.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pollResults.xib; sourceTree = "<group>"; };
+		86C12B1A19632DA1001FB463 /* reportView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = reportView.xib; sourceTree = "<group>"; };
+		86C12B1C19633132001FB463 /* UGPollResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPollResultsView.h; sourceTree = "<group>"; };
+		86C12B1D19633132001FB463 /* UGPollResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPollResultsView.m; sourceTree = "<group>"; };
 		86C1CDF5175031C8000CDD91 /* logoSlim@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoSlim@2x.png"; sourceTree = "<group>"; };
 		86CF3C0F1922A257005D47F5 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		86CF3C111922BEF4005D47F5 /* teamsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamsIcon@2x.png"; sourceTree = "<group>"; };
@@ -813,6 +820,10 @@
 				8671AED11947833D00471646 /* pollCell.xib */,
 				8671AED31947843F00471646 /* UGPollCell.h */,
 				8671AED41947843F00471646 /* UGPollCell.m */,
+				86C12B1C19633132001FB463 /* UGPollResultsView.h */,
+				86C12B1D19633132001FB463 /* UGPollResultsView.m */,
+				86C12B1819632CAF001FB463 /* pollResults.xib */,
+				86C12B1A19632DA1001FB463 /* reportView.xib */,
 			);
 			name = Polls;
 			sourceTree = "<group>";
@@ -1071,6 +1082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8634D31818D7AB220004FA53 /* userCell.xib in Resources */,
+				86C12B1919632CAF001FB463 /* pollResults.xib in Resources */,
 				865322F918B6A40C009BBE78 /* profileEditIcon.png in Resources */,
 				865B603A18F32442005714DE /* newsIcon@2x.png in Resources */,
 				8649ACB5173AFE8200D0D8AD /* InfoPlist.strings in Resources */,
@@ -1095,6 +1107,7 @@
 				86989FC718AC4AEA00903496 /* Default@2x.png in Resources */,
 				8697FA591746D5BE00FC1C2E /* navBar@2x.png in Resources */,
 				8697FA5E1746DE7100FC1C2E /* buttonDark@2x.png in Resources */,
+				86C12B1B19632DA1001FB463 /* reportView.xib in Resources */,
 				86E21E6018CE8CE700C49455 /* tv@2x.png in Resources */,
 				8697FA601746DF7200FC1C2E /* toolBar@2x.png in Resources */,
 				8634D31518D3EC6D0004FA53 /* arrow.png in Resources */,
@@ -1144,6 +1157,7 @@
 				8649ACF4173B0FA100D0D8AD /* JCActionSheetManager.m in Sources */,
 				8649AD0A173B3F1A00D0D8AD /* UGTermsViewController.m in Sources */,
 				86929EDD18F8B13C001EAF05 /* UGNewsFeedViewController.m in Sources */,
+				86C12B1E19633132001FB463 /* UGPollResultsView.m in Sources */,
 				86E21E7518CEA50900C49455 /* UGThumbCell.m in Sources */,
 				86A7FA091909EB8400CCF292 /* UGVideoFeedView.m in Sources */,
 				8634A000191430030057622B /* UGRSSPreviewViewController.m in Sources */,
@@ -1333,8 +1347,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
-				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				PROVISIONING_PROFILE = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1363,7 +1377,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
-				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				PROVISIONING_PROFILE = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

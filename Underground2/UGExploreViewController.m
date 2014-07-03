@@ -83,7 +83,7 @@
         popularView.selectedData = selectedHandler;
         recentView.selectedData = selectedHandler;
         
-        segmentView = [[JCSegmentView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 94) items:@[@"Map", @"Popular", @"Recent"] views:@[mapView, popularView, recentView]];
+        segmentView = [[JCSegmentView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 94) items:@[@"Map", @"Popular", @"Recent"] views:@[mapView, popularView, recentView] padding:10];
         [self.view addSubview:segmentView];
         
         [segmentView setIndexChanged:^(NSUInteger index){

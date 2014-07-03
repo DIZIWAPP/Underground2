@@ -42,16 +42,24 @@
 
 -(void)parseURLs:(NSArray *)urls completion:(void(^)(NSArray *items))block
 {
-    _feedHandler = block;
-    if (!parsedItems) parsedItems = [NSMutableArray array];
-    [parsedItems removeAllObjects];
-    
-    if (!subscribedURLs) subscribedURLs = [NSMutableArray array];
-    [subscribedURLs removeAllObjects];
-    
-    subscribedURLs = [urls mutableCopy];
-    
-    [self parseNextFeedURL];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        do {
+            sleep(1);
+        } while (feedParser.isParsing || _feedHandler);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _feedHandler = block;
+            if (!parsedItems) parsedItems = [NSMutableArray array];
+            [parsedItems removeAllObjects];
+            
+            if (!subscribedURLs) subscribedURLs = [NSMutableArray array];
+            [subscribedURLs removeAllObjects];
+            
+            subscribedURLs = [urls mutableCopy];
+            
+            [self parseNextFeedURL];
+        });
+    });
 }
 
 -(void)findRSSItemsProgress:(ParseProgress)progress completion:(FoundItemsHandler)block
@@ -93,6 +101,7 @@
     if (subscribedURLs.count <= 0) {
         //Complete
         if (_feedHandler) _feedHandler(parsedItems);
+        _feedHandler = nil;
         return;
     }
     

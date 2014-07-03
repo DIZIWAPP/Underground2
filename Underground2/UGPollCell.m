@@ -123,7 +123,6 @@
         [buttonDisagree setEnabled:YES];
         [buttonDiscuss setEnabled:YES];
     }];
-    
 }
 
 - (IBAction)discuss:(id)sender {

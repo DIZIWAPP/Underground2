@@ -18,6 +18,6 @@ typedef void (^IndexChanged)(NSUInteger index);
 
 @property (nonatomic, strong) IndexChanged indexChanged;
 
--(id)initWithFrame:(CGRect)frame items:(NSArray *)items views:(NSArray *)views;
+- (id)initWithFrame:(CGRect)frame items:(NSArray *)items views:(NSArray *)views padding:(float)p;
 
 @end

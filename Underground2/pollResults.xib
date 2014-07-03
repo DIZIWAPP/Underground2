@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="OZi-Ef-RmY" customClass="UGPollResultsView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="414"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qYt-1g-h3V">
+                    <rect key="frame" x="0.0" y="94" width="320" height="120"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="mqN-2M-pKx"/>
+                    </constraints>
+                </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pQ-sn-C17">
+                    <rect key="frame" x="20" y="60" width="98" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="98" id="go2-OU-4qu"/>
+                        <constraint firstAttribute="height" constant="26" id="yCX-6b-822"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                    <state key="normal" title="No">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="disagree:" destination="OZi-Ef-RmY" eventType="touchUpInside" id="afZ-fo-PYj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKt-9B-MXs">
+                    <rect key="frame" x="200" y="60" width="100" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="1" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="3dZ-gd-r2r"/>
+                        <constraint firstAttribute="width" constant="100" id="Tlq-9c-Iem"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                    <state key="normal" title="Yes">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="agree:" destination="OZi-Ef-RmY" eventType="touchUpInside" id="Eup-tC-tsu"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="312" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-cD-Of4">
+                    <rect key="frame" x="4" y="4" width="312" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="6Jt-HN-ohT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7pQ-sn-C17" firstAttribute="top" secondItem="QXf-cD-Of4" secondAttribute="bottom" constant="8" id="25i-ij-T9D"/>
+                <constraint firstItem="QXf-cD-Of4" firstAttribute="leading" secondItem="OZi-Ef-RmY" secondAttribute="leading" constant="4" id="2Ja-r9-Wuq"/>
+                <constraint firstItem="xKt-9B-MXs" firstAttribute="top" secondItem="QXf-cD-Of4" secondAttribute="bottom" constant="8" id="3os-gi-zlq"/>
+                <constraint firstItem="qYt-1g-h3V" firstAttribute="top" secondItem="xKt-9B-MXs" secondAttribute="bottom" constant="8" id="DjU-wk-ZRu"/>
+                <constraint firstAttribute="trailing" secondItem="xKt-9B-MXs" secondAttribute="trailing" constant="20" id="d8Q-1u-bqW"/>
+                <constraint firstAttribute="trailing" secondItem="qYt-1g-h3V" secondAttribute="trailing" id="eH9-PA-6bu"/>
+                <constraint firstItem="qYt-1g-h3V" firstAttribute="leading" secondItem="OZi-Ef-RmY" secondAttribute="leading" id="j00-7T-5oO"/>
+                <constraint firstItem="QXf-cD-Of4" firstAttribute="top" secondItem="OZi-Ef-RmY" secondAttribute="top" constant="4" id="mMj-ky-eEX"/>
+                <constraint firstAttribute="trailing" secondItem="QXf-cD-Of4" secondAttribute="trailing" constant="4" id="mQZ-CW-n6j"/>
+                <constraint firstItem="7pQ-sn-C17" firstAttribute="leading" secondItem="OZi-Ef-RmY" secondAttribute="leading" constant="20" id="p0G-ls-oQS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buttonNo" destination="7pQ-sn-C17" id="OIt-Fc-RpZ"/>
+                <outlet property="buttonYes" destination="xKt-9B-MXs" id="v82-4g-kl8"/>
+                <outlet property="mapVotes" destination="qYt-1g-h3V" id="yX8-Uz-Dp9"/>
+                <outlet property="title" destination="QXf-cD-Of4" id="EjW-h4-Nns"/>
+            </connections>
+        </view>
+    </objects>
+</document>
