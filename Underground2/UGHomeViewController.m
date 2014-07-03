@@ -33,19 +33,12 @@
 #import "UGFilterViewController.h"
 #import "UGPollsViewController.h"
 
-#import "JCSegmentView.h"
-
 #define DOCUMENTS [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]
 
 @interface UGHomeViewController () <UGContainedViewDelegate>
 {
     UGArticleFeedView *articleFeedView;
     UGVideoFeedView *videoFeedView;
-    
-    JCSegmentView *segmentView;
-    
-    UIView *resultsView;
-    UIView *reportView;
 }
 
 @end
@@ -61,27 +54,23 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    articleFeedView = [[UGArticleFeedView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height/2)];
+    articleFeedView = [[UGArticleFeedView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height/2 - 46)];
     [self.view addSubview:articleFeedView];
     articleFeedView.delegate = self;
     
-    resultsView = [[UINib nibWithNibName:@"pollResults" bundle:[NSBundle mainBundle]] instantiateWithOwner:self options:nil][0];
-    reportView = [[UINib nibWithNibName:@"reportView" bundle:[NSBundle mainBundle]] instantiateWithOwner:self options:nil][0];
+    videoFeedView = [[UGVideoFeedView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 46, 320, self.view.frame.size.height/2 - 46)];
+    [self.view addSubview:videoFeedView];
     
-    segmentView = [[JCSegmentView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44*2) items:@[@"Vote", @"Report", @"Press"] views:@[resultsView, reportView, articleFeedView] padding:0];
-    [self.view addSubview:segmentView];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"  TV " style:UIBarButtonItemStylePlain target:self action:@selector(viewTV)];
     
-    
-    //setup report
-    UIWebView *web = (UIWebView *)[reportView viewWithTag:100];
-    [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.youtube.com/user/undergroundnetwork"] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:20]];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"  TV " style:UIBarButtonItemStylePlain target:self action:@selector(viewTV)];
+    videoFeedView.delegate = self;
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"underground"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationItem.titleView = imageView;
+    
+    [articleFeedView refresh];
 }
 
 -(void)viewDidAppear:(BOOL)animated

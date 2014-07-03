@@ -14,9 +14,4 @@
 
 @property (nonatomic, weak) PFUser *user;
 
-@property (nonatomic, copy) NSString *message;
-
--(void)refreshWithQuery:(PFQuery *(^)(void))block;
--(void)removeRefresh;
-
 @end

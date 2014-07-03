@@ -14,21 +14,18 @@
     CGSize contentSize;
 }
 
-- (id)initWithFrame:(CGRect)frame items:(NSArray *)items views:(NSArray *)views padding:(float)p
+- (id)initWithFrame:(CGRect)frame items:(NSArray *)items views:(NSArray *)views
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor whiteColor];
-        
         _views = views;
         
+        float p = 10; //padding
         float sHeight = 50;
         
-        float p2 = 10;
-        
         _segmentControl = [[UISegmentedControl alloc] initWithItems:items];
-        _segmentControl.frame = CGRectMake(p2, p2, frame.size.width - p2*2, sHeight - p2*2);
+        _segmentControl.frame = CGRectMake(p, p, frame.size.width - p*2, sHeight - p*2);
         [self addSubview:_segmentControl];
         
         [_segmentControl addTarget:self action:@selector(updateIndex) forControlEvents:UIControlEventValueChanged];

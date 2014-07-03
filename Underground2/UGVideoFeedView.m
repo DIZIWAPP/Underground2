@@ -19,9 +19,6 @@
 #import "UGExploreViewController.h"
 
 @interface UGVideoFeedView () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-{
-    NSMutableArray *feed;
-}
 
 @end
 
@@ -69,68 +66,35 @@
     return self;
 }
 
--(void)removeRefresh
-{
-    [refresh removeFromSuperview];
-}
-
 -(void)refresh
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.collectionViewFiles.userInteractionEnabled = NO;
         [[UGCurrentUser user] refreshCompletion:^{
-            feed = [[UGCurrentUser user].feed mutableCopy];
-            [self updateUI];
+                self.collectionViewFiles.userInteractionEnabled = YES;
+                [refresh endRefreshing];
+                [self.collectionViewFiles reloadData];
+                
+                if ([UGCurrentUser user].feed.count == 0)
+                {
+                    if (!manageFeedButton)
+                    {
+                        manageFeedButton = [UIButton buttonWithType:UIButtonTypeSystem];
+                        manageFeedButton.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+                        [manageFeedButton setTitle:@"Tap to Follow Users" forState:UIControlStateNormal];
+                        [manageFeedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                        [manageFeedButton.titleLabel setFont:[UIFont fontWithName:@"AvenirNext-Heavy" size:18]];
+                        manageFeedButton.titleLabel.numberOfLines = 2;
+                        [manageFeedButton addTarget:self action:@selector(followUsers) forControlEvents:UIControlEventTouchUpInside];
+                    }
+                    
+                    [self addSubview:manageFeedButton];
+                }else{
+                    [manageFeedButton removeFromSuperview];
+                    manageFeedButton = nil;
+                }
         }];
     });
-}
-
--(void)refreshWithQuery:(PFQuery *(^)(void))block
-{
-    PFQuery *query = block();
-    
-    if (!feed) feed = [NSMutableArray array];
-    [feed removeAllObjects];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            [self updateUI];
-            return;
-        }
-        
-        for (PFObject *object in objects){
-            UGVideo *video = [[UGVideo alloc] initWithObject:object];
-            [feed addObject:video];
-        }
-        
-        [self updateUI];
-    }];
-}
-
--(void)updateUI
-{
-    self.collectionViewFiles.userInteractionEnabled = YES;
-    [refresh endRefreshing];
-    [self.collectionViewFiles reloadData];
-    
-    if (feed.count == 0)
-    {
-        if (!manageFeedButton)
-        {
-            manageFeedButton = [UIButton buttonWithType:UIButtonTypeSystem];
-            manageFeedButton.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-            [manageFeedButton setTitle:self.message ? self.message : @"Tap to Follow Users" forState:UIControlStateNormal];
-            [manageFeedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [manageFeedButton.titleLabel setFont:[UIFont fontWithName:@"AvenirNext-Heavy" size:18]];
-            manageFeedButton.titleLabel.numberOfLines = 2;
-            [manageFeedButton addTarget:self action:@selector(followUsers) forControlEvents:UIControlEventTouchUpInside];
-        }
-        
-        [self addSubview:manageFeedButton];
-    }else{
-        [manageFeedButton removeFromSuperview];
-        manageFeedButton = nil;
-    }
 }
 
 -(void)followUsers
@@ -140,13 +104,13 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id data = feed[indexPath.row];
+    id data = [UGCurrentUser user].feed[indexPath.row];
     
     if ([data isKindOfClass:[UGVideo class]])
     {
         UGVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"videoCell" forIndexPath:indexPath];
         
-        UGVideo *video = feed[indexPath.row];
+        UGVideo *video = [UGCurrentUser user].feed[indexPath.row];
         cell.video = video;
         
         return cell;
@@ -157,16 +121,16 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return feed.count;
+    return [UGCurrentUser user].feed.count;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id data = feed[indexPath.row];
+    id data = [UGCurrentUser user].feed[indexPath.row];
     
     if ([data isKindOfClass:[UGVideo class]])
     {
-        UGVideo *video = feed[indexPath.row];
+        UGVideo *video = [UGCurrentUser user].feed[indexPath.row];
         
         [video playInVideoViewController];
     }
@@ -174,11 +138,11 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id data = feed[indexPath.row];
+    id data = [UGCurrentUser user].feed[indexPath.row];
     
     if ([data isKindOfClass:[UGVideo class]])
     {
-        UGVideo *video = feed[indexPath.row];
+        UGVideo *video = [UGCurrentUser user].feed[indexPath.row];
         
         return [video sizeForCollection];
     }
