@@ -25,6 +25,8 @@
 
 #import "UGLiveViewController.h"
 
+#import "UGPollResultsViewController.h"
+
 @implementation UGPollCell
 {
     __weak IBOutlet UILabel *name;
@@ -92,8 +94,7 @@
     PFRelation *yesRelation = [self.item.petitionObject relationforKey:@"votesYes"];
     PFRelation *noRelation = [self.item.petitionObject relationforKey:@"votesNo"];
     
-    if (agree)
-    {
+    if (agree){
         [yesRelation addObject:[PFUser currentUser]];
         [noRelation removeObject:[PFUser currentUser]];
     }else{
@@ -138,6 +139,12 @@
     }];
 }
 - (IBAction)viewDiscussion:(id)sender {
+    
+    UGPollResultsViewController *results = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"pollResultsVC"];
+    results.item = self.item;
+    [[UGTabBarController tabBarController] pushViewController:results];
+    
+    /*
     UGFilterViewController *filtered = [UGFilterViewController findItemsWithQueryBlock:^PFQuery *{
         PFRelation *discussions = [self.item.petitionObject relationforKey:@"discussions"];
         
@@ -147,7 +154,7 @@
         
         return videos;
     } searchText:@""];
-    filtered.title = @"Discussions";
+    filtered.title = @"Discussions"; */
 }
 
 -(void)viewArticle

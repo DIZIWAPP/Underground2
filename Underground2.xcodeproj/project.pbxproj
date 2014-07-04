@@ -125,6 +125,8 @@
 		86989FC618AC4AEA00903496 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 86989FC318AC4AEA00903496 /* Default.png */; };
 		86989FC718AC4AEA00903496 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86989FC418AC4AEA00903496 /* Default@2x.png */; };
 		8698F5B6179879AE000F9413 /* UGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698F5B5179879AE000F9413 /* UGNavigationController.m */; };
+		86A5C0B419661605004DD78A /* UGPollResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A5C0B319661605004DD78A /* UGPollResultsViewController.m */; };
+		86A5C0BA19661E87004DD78A /* UGVideosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A5C0B919661E87004DD78A /* UGVideosView.m */; };
 		86A7FA061909EA5A00CCF292 /* record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86A7FA051909EA5A00CCF292 /* record@2x.png */; };
 		86A7FA091909EB8400CCF292 /* UGVideoFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA081909EB8400CCF292 /* UGVideoFeedView.m */; };
 		86A7FA0C1909EC7600CCF292 /* UGArticleFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA0B1909EC7600CCF292 /* UGArticleFeedView.m */; };
@@ -366,6 +368,10 @@
 		86989FC418AC4AEA00903496 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8698F5B4179879AE000F9413 /* UGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNavigationController.h; sourceTree = "<group>"; };
 		8698F5B5179879AE000F9413 /* UGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNavigationController.m; sourceTree = "<group>"; };
+		86A5C0B219661605004DD78A /* UGPollResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPollResultsViewController.h; sourceTree = "<group>"; };
+		86A5C0B319661605004DD78A /* UGPollResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPollResultsViewController.m; sourceTree = "<group>"; };
+		86A5C0B819661E87004DD78A /* UGVideosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGVideosView.h; sourceTree = "<group>"; };
+		86A5C0B919661E87004DD78A /* UGVideosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGVideosView.m; sourceTree = "<group>"; };
 		86A7FA051909EA5A00CCF292 /* record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record@2x.png"; sourceTree = "<group>"; };
 		86A7FA071909EB8400CCF292 /* UGVideoFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGVideoFeedView.h; sourceTree = "<group>"; };
 		86A7FA081909EB8400CCF292 /* UGVideoFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGVideoFeedView.m; sourceTree = "<group>"; };
@@ -810,6 +816,8 @@
 			children = (
 				8671AECD1947828A00471646 /* UGPollsViewController.h */,
 				8671AECE1947828A00471646 /* UGPollsViewController.m */,
+				86A5C0B219661605004DD78A /* UGPollResultsViewController.h */,
+				86A5C0B319661605004DD78A /* UGPollResultsViewController.m */,
 				8671AED11947833D00471646 /* pollCell.xib */,
 				8671AED31947843F00471646 /* UGPollCell.h */,
 				8671AED41947843F00471646 /* UGPollCell.m */,
@@ -923,6 +931,8 @@
 				86A7FA081909EB8400CCF292 /* UGVideoFeedView.m */,
 				86A7FA0A1909EC7600CCF292 /* UGArticleFeedView.h */,
 				86A7FA0B1909EC7600CCF292 /* UGArticleFeedView.m */,
+				86A5C0B819661E87004DD78A /* UGVideosView.h */,
+				86A5C0B919661E87004DD78A /* UGVideosView.m */,
 			);
 			name = ContainedViews;
 			sourceTree = "<group>";
@@ -1153,6 +1163,7 @@
 				867410C8173B4D8C00BA7A96 /* UGTermsManager.m in Sources */,
 				8634D30F18D27C550004FA53 /* TTTOrdinalNumberFormatter.m in Sources */,
 				86B9E92518A9773F0068FF73 /* UGTaggingManager.m in Sources */,
+				86A5C0B419661605004DD78A /* UGPollResultsViewController.m in Sources */,
 				867410D0173B51D700BA7A96 /* NSString+StringBetween.m in Sources */,
 				86AB875F18F4B523004E53D0 /* UGRSSItem.m in Sources */,
 				86BC64C218C13F6D00C581DE /* UGSocialViewController.m in Sources */,
@@ -1191,6 +1202,7 @@
 				8671AECF1947828A00471646 /* UGPollsViewController.m in Sources */,
 				86BE1787174D9E9400105367 /* UGLogInViewController.m in Sources */,
 				86324EA618AD88670087A249 /* UGTagsViewController.m in Sources */,
+				86A5C0BA19661E87004DD78A /* UGVideosView.m in Sources */,
 				86BC64CF18C14CC700C581DE /* GLTapLabel.m in Sources */,
 				86BE178A174DA23000105367 /* UGSignUpViewController.m in Sources */,
 				86BC64C918C149DF00C581DE /* UGInteractionCell.m in Sources */,
@@ -1333,8 +1345,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
-				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				PROVISIONING_PROFILE = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1363,7 +1375,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Underground2;
-				PROVISIONING_PROFILE = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
+				PROVISIONING_PROFILE = "A1A3146C-DA0D-4BDB-9020-5E818F654E55";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7265FA8F-1688-4F23-AFEC-770AEC45D7B3";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

@@ -37,7 +37,7 @@
 
 @interface UGHomeViewController () <UGContainedViewDelegate>
 {
-    UGArticleFeedView *articleFeedView;
+    //UGArticleFeedView *articleFeedView;
     UGVideoFeedView *videoFeedView;
 }
 
@@ -54,11 +54,12 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
+    /*
     articleFeedView = [[UGArticleFeedView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height/2 - 46)];
     [self.view addSubview:articleFeedView];
-    articleFeedView.delegate = self;
+    articleFeedView.delegate = self; */
     
-    videoFeedView = [[UGVideoFeedView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 46, 320, self.view.frame.size.height/2 - 46)];
+    videoFeedView = [[UGVideoFeedView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 46*2)];
     [self.view addSubview:videoFeedView];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
@@ -70,7 +71,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationItem.titleView = imageView;
     
-    [articleFeedView refresh];
+    //[articleFeedView refresh];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -87,10 +88,11 @@
         [videoFeedView refresh];
     }
     
+    /*
     if (articleFeedView.feed.count == 0)
     {
         [articleFeedView refresh];
-    }
+    } */
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,6 +126,7 @@
 
 -(void)containedViewInteracted:(UGContainedView *)containedView
 {
+    /*
     float height = self.view.frame.size.height;
     float minHeight = 46;
     
@@ -142,7 +145,7 @@
         }
         
         [self.view layoutSubviews];
-    }];
+    }]; */
 }
 
 -(NSUInteger)supportedInterfaceOrientations

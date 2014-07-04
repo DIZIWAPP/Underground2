@@ -1050,6 +1050,73 @@
             </objects>
             <point key="canvasLocation" x="-980" y="894"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RJb-77-2Yi">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="AC0-zD-qQk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajE-M9-LJb">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WoB-O9-LEf" kind="relationship" relationship="rootViewController" id="hsV-CD-Qam"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtk-Dc-hFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1818" y="1589"/>
+        </scene>
+        <!--Poll Results View Controller - Discuss-->
+        <scene sceneID="nCc-Vr-mOr">
+            <objects>
+                <viewController storyboardIdentifier="pollResultsVC" id="WoB-O9-LEf" customClass="UGPollResultsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0U4-M1-qhE"/>
+                        <viewControllerLayoutGuide type="bottom" id="JNL-R7-uzA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qG0-D0-Rl0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poll name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="309" translatesAutoresizingMaskIntoConstraints="NO" id="69r-3M-DKw">
+                                <rect key="frame" x="6" y="64" width="309" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="51T-Gb-TL0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOQ-Vq-9C7">
+                                <rect key="frame" x="6" y="108" width="91" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="03n-Kl-9zX"/>
+                                    <constraint firstAttribute="height" constant="18" id="kgh-Im-Pld"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hOQ-Vq-9C7" firstAttribute="top" secondItem="0U4-M1-qhE" secondAttribute="bottom" constant="44" id="Hld-SS-bJL"/>
+                            <constraint firstItem="69r-3M-DKw" firstAttribute="top" secondItem="0U4-M1-qhE" secondAttribute="bottom" id="acH-7g-CcE"/>
+                            <constraint firstAttribute="trailing" secondItem="69r-3M-DKw" secondAttribute="trailing" constant="5" id="b8s-8h-T2G"/>
+                            <constraint firstItem="69r-3M-DKw" firstAttribute="leading" secondItem="qG0-D0-Rl0" secondAttribute="leading" constant="6" id="kCD-bR-y05"/>
+                            <constraint firstItem="hOQ-Vq-9C7" firstAttribute="leading" secondItem="qG0-D0-Rl0" secondAttribute="leading" constant="6" id="vsU-Tz-bD0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Discuss" id="0p5-sb-Euy"/>
+                    <connections>
+                        <outlet property="labelTime" destination="hOQ-Vq-9C7" id="BGD-Dc-gs1"/>
+                        <outlet property="labelTitle" destination="69r-3M-DKw" id="a8c-al-1js"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fB-JG-78N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1395" y="1589"/>
+        </scene>
         <!--Admin View Controller - Admin-->
         <scene sceneID="HEV-YQ-XXv">
             <objects>

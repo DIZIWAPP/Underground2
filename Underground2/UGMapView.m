@@ -41,7 +41,7 @@
         map.showsUserLocation = YES;
         map.delegate = self;
         
-        [self refresh];
+        //[self refresh];
     }
     
     return self;
@@ -52,6 +52,33 @@
     [super setFrame:frame];
     
     map.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
+-(void)showAnnotationsForVideos:(NSArray *)videos
+{
+    for (UGVideo *video in videos)
+    {
+        UGPointAnnotation *fileAnnotation = [[UGPointAnnotation alloc] init];
+        
+        fileAnnotation.video = video;
+        
+        fileAnnotation.title = [[JCParseManager sharedManager] nameForObject:video.object];
+        
+        NSString *subTitle = [NSString stringWithFormat:@"%@", [[JCParseManager sharedManager].formatter stringFromDate:video.object.createdAt]];
+        fileAnnotation.subtitle = subTitle;
+        
+        PFGeoPoint *fileLocation = video.object[@"location"];
+        
+        if (video.object[@"locationOffset"])
+            fileLocation = video.object[@"locationOffset"];
+        
+        CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(fileLocation.latitude, fileLocation.longitude);
+        
+        [fileAnnotation setCoordinate:coords];
+        
+        [annotations addObject:fileAnnotation];
+        [map addAnnotation:fileAnnotation];
+    }
 }
 
 -(void)refresh

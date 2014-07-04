@@ -25,10 +25,10 @@
 @implementation UGVideoFeedView
 {
     UIRefreshControl *refresh;
-    
     CGRect startRect;
-    
     UIButton * manageFeedButton;
+    
+    NSMutableArray *videos;
 }
 
 - (id)initWithFrame:(CGRect)frame

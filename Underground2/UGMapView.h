@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef PFQuery *(^Query)(void);
+
 @interface UGMapView : UIView
 
+@property (nonatomic, copy) Query query;
+
+-(void)showAnnotationsForVideos:(NSArray *)videos;
 -(void)refresh;
 
 @end
